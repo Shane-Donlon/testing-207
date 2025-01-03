@@ -1,11 +1,20 @@
-import qwikdev from "@qwikdev/astro";
-import { defineConfig } from "astro/config";
+import vercel from '@astrojs/vercel/serverless';
+import { defineConfig } from 'astro/config';
 
-import netlify from "@astrojs/netlify";
+
+ import qwikdev from '@qwikdev/astro';
+
+
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [qwikdev()],
-  adapter: netlify(),
   output: 'server',
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    maxDuration: 8,
+  }),
+
 });
